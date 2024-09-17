@@ -1,0 +1,3 @@
+/home/faisal/Sodum/CMakeFiles/SodumRunner.dir
+/home/faisal/Sodum/CMakeFiles/edit_cache.dir
+/home/faisal/Sodum/CMakeFiles/rebuild_cache.dir
