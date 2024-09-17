@@ -8,3 +8,5 @@ the Current version that i am trying to build("tears[of_joy]*")+ will include:
 --output on screen 
 
 
+*.sod 
+
