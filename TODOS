@@ -1,0 +1,5 @@
+1) Fix the clang format bug (the cmake file correctly builds but doesn't format according to script written)
+
+2)Remove unwanted tokens for the moment
+
+3) create the lexer structure and class (follow best practices)
