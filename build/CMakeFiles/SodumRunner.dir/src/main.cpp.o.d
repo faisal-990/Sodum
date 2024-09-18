@@ -151,5 +151,5 @@ CMakeFiles/SodumRunner.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc \
- /home/faisal/Sodum/src/../include/parser/parser.hpp \
- /home/faisal/Sodum/src/../include/tokens.hpp
+ /home/faisal/Sodum/include/../include/tokens.hpp \
+ /home/faisal/Sodum/src/../include/parser/parser.hpp

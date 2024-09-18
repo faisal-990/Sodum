@@ -1,4 +1,4 @@
 #!/bin/bash
-clang-format -i ${CMAKE_SOURCE_DIR}/src/*.cpp
+clang-format -i --style=="LLVM" ${CMAKE_SOURCE_DIR}/src/*.cpp
 
 

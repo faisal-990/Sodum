@@ -7,7 +7,7 @@ set(SOURCES
     src/main.cpp
 )
 
-# Create an executable target named 'my_executable'
+# Create an executable target named 'SodumRunner'
 add_executable(SodumRunner ${SOURCES})
 
 # Add include directories

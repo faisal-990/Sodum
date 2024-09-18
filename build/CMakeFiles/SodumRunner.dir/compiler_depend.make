@@ -187,8 +187,8 @@ CMakeFiles/SodumRunner.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
   /usr/include/c++/11/bits/fstream.tcc \
-  ../include/parser/parser.hpp \
-  ../include/tokens.hpp
+  ../include/tokens.hpp \
+  ../include/parser/parser.hpp
 
 
 ../include/parser/parser.hpp:
