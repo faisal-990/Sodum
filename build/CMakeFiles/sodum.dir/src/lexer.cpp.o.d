@@ -1,4 +1,4 @@
-CMakeFiles/sodum.dir/src/main.cpp.o: /home/faisal/Sodum/src/main.cpp \
+CMakeFiles/sodum.dir/src/lexer.cpp.o: /home/faisal/Sodum/src/lexer.cpp \
  /usr/include/stdc-predef.h \
  /home/faisal/Sodum/src/../include/lexer/lexer.hpp \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
@@ -157,6 +157,4 @@ CMakeFiles/sodum.dir/src/main.cpp.o: /home/faisal/Sodum/src/main.cpp \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc \
- /home/faisal/Sodum/include/../include/tokens.hpp \
- /home/faisal/Sodum/src/../include/parser/parser.hpp \
- /usr/include/c++/11/sstream /usr/include/c++/11/bits/sstream.tcc
+ /home/faisal/Sodum/include/../include/tokens.hpp

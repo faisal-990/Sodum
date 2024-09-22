@@ -81,4 +81,21 @@ enum TYPE:char{
 }
 
 
+class Token {
+public:
+    TOKEN::TYPE type;
+    std::string lexeme;
+    int line=-1;
 
+    // Constructor
+    Token(TOKEN::TYPE type, std::string lexeme, int line) 
+        : type(type), lexeme(lexeme), line(line) {}
+    
+
+    // Method to convert Lexer details to string
+    std::string toString() const {
+        return "tokenType: " + std::to_string(static_cast<int>(type)) + 
+               " lexeme: " + lexeme + 
+               " lineNo.: " + std::to_string(line);
+    }
+};

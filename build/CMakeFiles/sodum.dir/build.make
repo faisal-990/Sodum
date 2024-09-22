@@ -69,10 +69,24 @@ include CMakeFiles/sodum.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/sodum.dir/flags.make
 
+CMakeFiles/sodum.dir/src/lexer.cpp.o: CMakeFiles/sodum.dir/flags.make
+CMakeFiles/sodum.dir/src/lexer.cpp.o: ../src/lexer.cpp
+CMakeFiles/sodum.dir/src/lexer.cpp.o: CMakeFiles/sodum.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/faisal/Sodum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sodum.dir/src/lexer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sodum.dir/src/lexer.cpp.o -MF CMakeFiles/sodum.dir/src/lexer.cpp.o.d -o CMakeFiles/sodum.dir/src/lexer.cpp.o -c /home/faisal/Sodum/src/lexer.cpp
+
+CMakeFiles/sodum.dir/src/lexer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sodum.dir/src/lexer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/faisal/Sodum/src/lexer.cpp > CMakeFiles/sodum.dir/src/lexer.cpp.i
+
+CMakeFiles/sodum.dir/src/lexer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sodum.dir/src/lexer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/faisal/Sodum/src/lexer.cpp -o CMakeFiles/sodum.dir/src/lexer.cpp.s
+
 CMakeFiles/sodum.dir/src/main.cpp.o: CMakeFiles/sodum.dir/flags.make
 CMakeFiles/sodum.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/sodum.dir/src/main.cpp.o: CMakeFiles/sodum.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/faisal/Sodum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sodum.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/faisal/Sodum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sodum.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sodum.dir/src/main.cpp.o -MF CMakeFiles/sodum.dir/src/main.cpp.o.d -o CMakeFiles/sodum.dir/src/main.cpp.o -c /home/faisal/Sodum/src/main.cpp
 
 CMakeFiles/sodum.dir/src/main.cpp.i: cmake_force
@@ -83,17 +97,35 @@ CMakeFiles/sodum.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sodum.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/faisal/Sodum/src/main.cpp -o CMakeFiles/sodum.dir/src/main.cpp.s
 
+CMakeFiles/sodum.dir/src/parser.cpp.o: CMakeFiles/sodum.dir/flags.make
+CMakeFiles/sodum.dir/src/parser.cpp.o: ../src/parser.cpp
+CMakeFiles/sodum.dir/src/parser.cpp.o: CMakeFiles/sodum.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/faisal/Sodum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sodum.dir/src/parser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sodum.dir/src/parser.cpp.o -MF CMakeFiles/sodum.dir/src/parser.cpp.o.d -o CMakeFiles/sodum.dir/src/parser.cpp.o -c /home/faisal/Sodum/src/parser.cpp
+
+CMakeFiles/sodum.dir/src/parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sodum.dir/src/parser.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/faisal/Sodum/src/parser.cpp > CMakeFiles/sodum.dir/src/parser.cpp.i
+
+CMakeFiles/sodum.dir/src/parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sodum.dir/src/parser.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/faisal/Sodum/src/parser.cpp -o CMakeFiles/sodum.dir/src/parser.cpp.s
+
 # Object files for target sodum
 sodum_OBJECTS = \
-"CMakeFiles/sodum.dir/src/main.cpp.o"
+"CMakeFiles/sodum.dir/src/lexer.cpp.o" \
+"CMakeFiles/sodum.dir/src/main.cpp.o" \
+"CMakeFiles/sodum.dir/src/parser.cpp.o"
 
 # External object files for target sodum
 sodum_EXTERNAL_OBJECTS =
 
+sodum: CMakeFiles/sodum.dir/src/lexer.cpp.o
 sodum: CMakeFiles/sodum.dir/src/main.cpp.o
+sodum: CMakeFiles/sodum.dir/src/parser.cpp.o
 sodum: CMakeFiles/sodum.dir/build.make
 sodum: CMakeFiles/sodum.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/faisal/Sodum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable sodum"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/faisal/Sodum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable sodum"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sodum.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

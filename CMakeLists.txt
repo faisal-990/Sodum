@@ -4,7 +4,7 @@ project(Sodum)
 set(CMAKE_CXX_STANDARD 17)
 
 # Add source files
-file(GLOB SOURCES "src/main.cpp")
+file(GLOB SOURCES "src/*.cpp")
 
 # Include directories
 include_directories(include)
