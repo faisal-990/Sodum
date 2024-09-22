@@ -117,24 +117,37 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named SodumRunner
+# Target rules for targets named sodum
 
 # Build rule for target.
-SodumRunner: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SodumRunner
-.PHONY : SodumRunner
+sodum: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sodum
+.PHONY : sodum
 
 # fast build rule for target.
-SodumRunner/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SodumRunner.dir/build.make CMakeFiles/SodumRunner.dir/build
-.PHONY : SodumRunner/fast
+sodum/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sodum.dir/build.make CMakeFiles/sodum.dir/build
+.PHONY : sodum/fast
+
+#=============================================================================
+# Target rules for targets named format
+
+# Build rule for target.
+format: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 format
+.PHONY : format
+
+# fast build rule for target.
+format/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/format.dir/build.make CMakeFiles/format.dir/build
+.PHONY : format/fast
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SodumRunner.dir/build.make CMakeFiles/SodumRunner.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sodum.dir/build.make CMakeFiles/sodum.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -142,7 +155,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SodumRunner.dir/build.make CMakeFiles/SodumRunner.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sodum.dir/build.make CMakeFiles/sodum.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -150,7 +163,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SodumRunner.dir/build.make CMakeFiles/SodumRunner.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sodum.dir/build.make CMakeFiles/sodum.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -161,7 +174,8 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... SodumRunner"
+	@echo "... format"
+	@echo "... sodum"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

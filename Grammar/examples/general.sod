@@ -1,0 +1,7 @@
+Function main()
+{
+	int a;
+	a=(5+2(3*10));
+	output(a);
+	ret;
+}

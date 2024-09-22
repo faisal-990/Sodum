@@ -13,7 +13,7 @@ enum TYPE:char{
 	Function,
 	Int,
 	Output,
-	Start,
+	Main,
 
 	//operators
 	Plus,
@@ -79,4 +79,6 @@ enum TYPE:char{
 };
 
 }
+
+
 

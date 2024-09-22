@@ -56,7 +56,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/faisal/Sodum
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/faisal/Sodum/build
+CMAKE_BINARY_DIR = /home/faisal/Sodum
 
 # Utility rule file for format.
 
@@ -67,7 +67,7 @@ include CMakeFiles/format.dir/compiler_depend.make
 include CMakeFiles/format.dir/progress.make
 
 CMakeFiles/format:
-	cd /home/faisal/Sodum && clang-format -i /home/faisal/Sodum/src/main.cpp
+	clang-format -i /home/faisal/Sodum/src/main.cpp
 
 format: CMakeFiles/format
 format: CMakeFiles/format.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/format.dir/clean:
 .PHONY : CMakeFiles/format.dir/clean
 
 CMakeFiles/format.dir/depend:
-	cd /home/faisal/Sodum/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/faisal/Sodum /home/faisal/Sodum /home/faisal/Sodum/build /home/faisal/Sodum/build /home/faisal/Sodum/build/CMakeFiles/format.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/faisal/Sodum && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/faisal/Sodum /home/faisal/Sodum /home/faisal/Sodum /home/faisal/Sodum /home/faisal/Sodum/CMakeFiles/format.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/format.dir/depend
 

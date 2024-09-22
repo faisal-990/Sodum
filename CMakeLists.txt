@@ -1,22 +1,21 @@
 cmake_minimum_required(VERSION 3.10)
-
 project(Sodum)
 
-# Specify the source files for the project
-set(SOURCES
-    src/main.cpp
+set(CMAKE_CXX_STANDARD 17)
+
+# Add source files
+file(GLOB SOURCES "src/main.cpp")
+
+# Include directories
+include_directories(include)
+
+# Create executable
+add_executable(sodum ${SOURCES})
+
+# Format code before building
+add_custom_target(
+    format
+    COMMAND clang-format -i ${SOURCES} ${HEADERS}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
-
-# Create an executable target named 'SodumRunner'
-add_executable(SodumRunner ${SOURCES})
-
-# Add include directories
-include_directories(${CMAKE_SOURCE_DIR}/include)
-
-# Add a custom command that runs clang-format on all source files before building the executable
-add_custom_command(
-    TARGET SodumRunner
-    PRE_BUILD
-    COMMAND ${CMAKE_SOURCE_DIR}/clang-format.sh
-    COMMENT "Running clang-format before building SodumRunner"
-)
+add_dependencies(sodum format)

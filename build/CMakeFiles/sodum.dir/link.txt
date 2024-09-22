@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/sodum.dir/src/main.cpp.o -o sodum 
