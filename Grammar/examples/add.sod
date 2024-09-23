@@ -4,5 +4,5 @@ Function main()
 	int b=20;
 	int c=a+b;
 	output(c);
-	ret
+	ret;
 }

@@ -24,7 +24,34 @@ bool Lexer::isAlphanumeric(char c) {
 std::string Lexer::getString(std::string &source, int start, int current) {
   return source.substr(start, current - start);
 }
-
+// function to scan numbers
+void Lexer::scanNumber() {
+  while (!endReached() && isNumber(peek())) {
+    advance();
+  }
+  std::string buffer = source.substr(start, current);
+  tokens.push_back(Token(TOKEN::NumberInt, buffer, line));
+}
+// function to display error message
+void Lexer::displayError(std::string &buffer) {
+  std::cerr << "ERROR:" << buffer << std::endl;
+}
+// function to scan strings
+void Lexer::scanString() {
+  while (peek() != '"' && !endReached()) {
+    if (peek() == '\n')
+      line++;
+    advance();
+  }
+  if (endReached()) {
+    std::string buffer = "unterminated string";
+    displayError(buffer);
+    return;
+  }
+  advance();
+  std::string buffer = source.substr(start + 1, current - 1);
+  tokens.push_back(Token(TOKEN::String, buffer, line));
+}
 void Lexer::skipWhiteSpaces() {
   while (!endReached() && source[current] == ' ') {
     current++;
@@ -40,103 +67,107 @@ bool Lexer::match(char expected) {
   }
   return false;
 }
-void scanTokens() {
+void Lexer::scanTokens() {
   skipWhiteSpaces();
   char ch = advance();
+  // match for numbers
+  if (isNumber(ch)) {
+    scanNumber();
+  }
   // match all the single tokens
   switch (ch) {
   case '(':
-    tokens.push_back(new Token(TOKEN::Lpar, "(", line));
+    tokens.push_back(Token(TOKEN::Lpar, "(", line));
     break;
   case ')':
-    tokens.push_back(new Token(TOKEN::Rpar, ")", line));
+    tokens.push_back(Token(TOKEN::Rpar, ")", line));
     break;
   case '{':
-    tokens.push_back(new Token(TOKEN::Lbraces, "{", line));
+    tokens.push_back(Token(TOKEN::Lbraces, "{", line));
     break;
   case '}':
-    tokens.push_back(new Token(TOKEN::Rbraces, "}", line));
+    tokens.push_back(Token(TOKEN::Rbraces, "}", line));
     break;
   case ';':
-    tokens.push_back(new Token(TOKEN::Semicolon, ";", line));
+    tokens.push_back(Token(TOKEN::Semicolon, ";", line));
     break;
   case '+': {
     if (match('=')) {
-      tokens.push_back(new Token(TOKEN::PlusEqual, "+=", line));
+      tokens.push_back(Token(TOKEN::PlusEqual, "+=", line));
     }
 
     else {
-      tokens.push_back(new Token(TOKEN::Plus, "+", line));
+      tokens.push_back(Token(TOKEN::Plus, "+", line));
     }
     break;
   }
   case '-': {
     if (match('=')) {
-      tokens.push_back(new Token(TOKEN::MinusEqual, "-=", line));
+      tokens.push_back(Token(TOKEN::MinusEqual, "-=", line));
     }
 
     else {
-      tokens.push_back(new Token(TOKEN::Minus, "+", line));
+      tokens.push_back(Token(TOKEN::Minus, "+", line));
     }
     break;
   }
   case '*': {
     if (match('=')) {
-      tokens.push_back(new Token(TOKEN::MultiplyEqual, "*=", line));
+      tokens.push_back(Token(TOKEN::MultiplyEqual, "*=", line));
     }
 
     else {
-      tokens.push_back(new Token(TOKEN::Multiply, "*", line));
+      tokens.push_back(Token(TOKEN::Multiply, "*", line));
     }
     break;
   }
   case '%': {
     if (match('=')) {
-      tokens.push_back(new Token(TOKEN::ModulusEqual, "%=", line));
+      tokens.push_back(Token(TOKEN::ModulusEqual, "%=", line));
     }
 
     else {
-      tokens.push_back(new Token(TOKEN::Modulus, "%", line));
+      tokens.push_back(Token(TOKEN::Modulus, "%", line));
     }
     break;
   }
   case '>': {
     if (match('=')) {
-      tokens.push_back(new Token(TOKEN::GreaterEqual, ">=", line));
+      tokens.push_back(Token(TOKEN::GreaterEqual, ">=", line));
     }
 
     else {
-      tokens.push_back(new Token(TOKEN::Greater, ">", line));
+      tokens.push_back(Token(TOKEN::Greater, ">", line));
     }
     break;
   }
   case '<': {
     if (match('=')) {
-      tokens.push_back(new Token(TOKEN::LesserEqual, "<=", line));
+      tokens.push_back(Token(TOKEN::LesserEqual, "<=", line));
     }
 
     else {
-      tokens.push_back(new Token(TOKEN::Lesser, "<", line));
+      tokens.push_back(Token(TOKEN::Lesser, "<", line));
     }
     break;
   }
   case '!': {
     if (match('=')) {
-      tokens.push_back(new Token(TOKEN::NotEqual, "!=", line));
+      tokens.push_back(Token(TOKEN::NotEqual, "!=", line));
     }
 
     else {
-      tokens.push_back(new Token(TOKEN::Not, "!", line));
+      tokens.push_back(Token(TOKEN::Not, "!", line));
     }
     break;
   }
   case '=': {
     if (match('=')) {
-      tokens.push_back(new Token(TOKEN::EqualEqual, "==", line));
+      tokens.push_back(Token(TOKEN::EqualEqual, "==", line));
     }
 
     else {
-      tokens.push_back(new Token(TOKEN::Equal, "=", line));
+      tokens.push_back(Token(TOKEN::Equal, "=", line));
     }
     break;
   }
@@ -147,18 +178,42 @@ void scanTokens() {
         // Do nothing, just skip the comment
       }
       // Optionally, you can increment the line number if you encounter a
-      // newline here
+      // line here
       line++; // Increment line if needed
     } else {
       if (match('=')) {
-        tokens.push_back(new Token(TOKEN::DivideEqual, "/=", line));
+        tokens.push_back(Token(TOKEN::DivideEqual, "/=", line));
       } else {
-        tokens.push_back(new Token(TOKEN::Divide, "/", line));
+        tokens.push_back(Token(TOKEN::Divide, "/", line));
       }
     }
     break;
   }
+  case '|': {
+    if (match('|')) {
+      tokens.push_back(Token(TOKEN::BitwiseOr, "||", line));
 
+    } else {
+      // report error usage
+      tokens.push_back(Token(TOKEN::Error, "single | usage", line));
+    }
+    break;
+  }
+  case '&': {
+    if (match('&')) {
+      tokens.push_back(Token(TOKEN::BitwiseAnd, "&&", line));
+
+    } else {
+      tokens.push_back(Token(TOKEN::Error, "single & usage", line));
+    }
+    break;
+  }
+    // handling literals
+    // firstly handling string literals
+  case '"':
+    scanString();
+    break;
+    // numeric literals have been handled at the beginning of scanTokens()
   }
 }
 
@@ -170,6 +225,6 @@ std::vector<Token> Lexer::lex(const std::string &source) {
     scanTokens();
   }
   // the end of file token
-  tokens.push_back(new Token(TOKEN::EOF, ""));
+  tokens.push_back(Token(TOKEN::Eof, "", line));
   return tokens;
 }

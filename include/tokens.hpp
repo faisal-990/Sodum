@@ -30,10 +30,12 @@ enum TYPE:char{
 	//logical
 	EqualEqual,
 	NotEqual,
+	Not,
 	Greater,
 	Smaller,
 	GreaterEqual,
 	LesserEqual,
+	Lesser,
 
 
 	//assignment
@@ -43,7 +45,7 @@ enum TYPE:char{
 	//bitwise
 	BitwiseAnd,
 	BitwiseOr,
-	BitwiseNot,
+	//BitwiseNot, already implemented in logical section
 
 	//boolean
 	True,
@@ -66,7 +68,7 @@ enum TYPE:char{
 
 	//literals
 	NumberInt,
-	Char,
+	Boolean,
 	String,
 
 	//error

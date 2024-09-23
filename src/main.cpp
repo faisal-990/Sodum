@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
     std::string fileContent = buffer.str();
 
     // Close the file (optional, as it will close automatically)
+    Lexer lexer(argv[1]);
     file.close();
     std::cout << fileContent << std::endl;
   }

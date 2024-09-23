@@ -4,6 +4,10 @@
 #include <iostream>
 #include <fstream>
 #include "../include/tokens.hpp"
+//**NOTE FOR ME ::
+//while creating an object of the class new keyword will not be used 
+//reason::new keyword allocates data on the heap which and provides a pointer //to that loaction which will have to be managed
+//creating objects without new will allocate memeory in the stack which will be auto managed
 
 class Lexer{
 	//it should take in the source file 
@@ -16,7 +20,7 @@ class Lexer{
 	Lexer(const std::string& source)
 	: source(source) {}
 	//it should have a main function that will return a std::vector of tokens
-	std::vector<Token>lex();
+	std::vector<Token>lex(const std::string& source);
 	//start will point at the beginning of the lexeme being scanned
 	//current will move
 	private:
@@ -27,17 +31,20 @@ class Lexer{
 	int line=1;
 	
 	//the main lex function
-	std::vector<Token> lex();
+	void scanTokens();
+	void scanNumber();
+	void scanString();
 	bool endReached();
-	chat peek();
-	std::string advance();
-	bool isNumber();
-	bool isAlphabet();
-	bool isAlphanumeric();
-	std:: getString(std::string& source,start,end);
+	char peek();
+	char advance();
+	bool isNumber(char c);
+	bool isAlphabet(char c);
+	bool isAlphanumeric(char c);
+	std::string getString(std::string& source,int start,int current);
 	void skipWhiteSpaces();
-	bool match();
-
+	bool match(char c);
+	void displayError(std::string& buffer);
+	
 
 };
 
