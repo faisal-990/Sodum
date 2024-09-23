@@ -25,6 +25,7 @@ enum TYPE:char{
 	MinusEqual,
 	MultiplyEqual,
 	DivideEqual,
+	ModulusEqual,
 
 	//logical
 	EqualEqual,
