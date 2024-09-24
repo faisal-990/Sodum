@@ -5,13 +5,16 @@ namespace TOKEN{
 enum TYPE:char{
 	//keywords
 	If,
-	ElseIF,
+	ElseIf,
 	Else,
 	While,
+	For,
 	Return,
 	Break,
 	Function,
 	Int,
+	Bool,
+	String,
 	Output,
 	Main,
 
@@ -67,9 +70,9 @@ enum TYPE:char{
 	SingleLineComments,
 
 	//literals
-	NumberInt,
-	Boolean,
-	String,
+	LiteralInt,
+	LiteralBoolean,
+	LiteralString,
 
 	//error
 	Error,

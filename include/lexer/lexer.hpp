@@ -3,11 +3,16 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include<unordered_map>
 #include "../include/tokens.hpp"
 //**NOTE FOR ME ::
 //while creating an object of the class new keyword will not be used 
 //reason::new keyword allocates data on the heap which and provides a pointer //to that loaction which will have to be managed
 //creating objects without new will allocate memeory in the stack which will be auto managed
+
+
+
+
 
 class Lexer{
 	//it should take in the source file 
@@ -17,8 +22,8 @@ class Lexer{
 
 	public:
 	//constructor that assigns the incoming file from main.cpp
-	Lexer(const std::string& source)
-	: source(source) {}
+	Lexer(const std::string& source);
+	std::unordered_map<std::string,TOKEN::TYPE>keywordsMap;
 	//it should have a main function that will return a std::vector of tokens
 	std::vector<Token>lex(const std::string& source);
 	//start will point at the beginning of the lexeme being scanned
@@ -34,6 +39,7 @@ class Lexer{
 	void scanTokens();
 	void scanNumber();
 	void scanString();
+	void scanIdentifier();
 	bool endReached();
 	char peek();
 	char advance();
@@ -47,4 +53,5 @@ class Lexer{
 	
 
 };
+
 

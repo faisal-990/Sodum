@@ -1,13 +1,36 @@
 #include "../include/lexer/lexer.hpp"
 
+#include "../include/tokens.hpp"
 #include <fstream>
 #include <string>
 
-#include "../include/tokens.hpp"
+// keywords map
+Lexer::Lexer(const std::string &source) : source(source) {
+  // Initialize the keywordsMap inside the constructor
+  keywordsMap["for"] = TOKEN::For;
+  keywordsMap["if"] = TOKEN::If;
+  keywordsMap["elseif"] = TOKEN::ElseIf;
+  keywordsMap["else"] = TOKEN::Else;
+  keywordsMap["while"] = TOKEN::While;
+  keywordsMap["ret"] = TOKEN::Return;
+  keywordsMap["return"] = TOKEN::Return;
+  keywordsMap["break"] = TOKEN::Break;
+  keywordsMap["Function"] = TOKEN::Function;
+  keywordsMap["int"] = TOKEN::Int;
+  keywordsMap["str"] = TOKEN::String;
+  keywordsMap["output"] = TOKEN::Output;
+  keywordsMap["main"] = TOKEN::Main;
+  keywordsMap["True"] = TOKEN::True;
+  keywordsMap["False"] = TOKEN::False;
+}
 
 bool Lexer::endReached() { return current >= source.size(); }
 
-char Lexer::peek() { return source[current]; }
+char Lexer::peek() {
+  if (endReached())
+    return '\0';
+  return source[current];
+}
 
 char Lexer::advance() { return source[current++]; }
 
@@ -18,11 +41,29 @@ bool Lexer::isAlphabet(char c) {
 }
 
 bool Lexer::isAlphanumeric(char c) {
-  return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c == '_');
+  return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
+         (c >= '0' && c <= '9');
 }
+
+bool isUnderScore(char ch) { return ch == '_'; }
 
 std::string Lexer::getString(std::string &source, int start, int current) {
   return source.substr(start, current - start);
+}
+
+// function to scan identifier
+void Lexer::scanIdentifier() {
+  while (!endReached() && (isAlphanumeric(peek()) || isUnderScore(peek()))) {
+    advance();
+  }
+  std::string buffer = source.substr(start, current);
+  if (keywordsMap.find(buffer) == keywordsMap.end()) {
+    // means not found in keyword, so an identifier
+    tokens.push_back(Token(TOKEN::Identifier, buffer, line));
+  } else {
+    // it is a keyword
+    tokens.push_back(Token(keywordsMap[buffer], buffer, line));
+  }
 }
 // function to scan numbers
 void Lexer::scanNumber() {
@@ -30,7 +71,7 @@ void Lexer::scanNumber() {
     advance();
   }
   std::string buffer = source.substr(start, current);
-  tokens.push_back(Token(TOKEN::NumberInt, buffer, line));
+  tokens.push_back(Token(TOKEN::LiteralInt, buffer, line));
 }
 // function to display error message
 void Lexer::displayError(std::string &buffer) {
@@ -50,7 +91,7 @@ void Lexer::scanString() {
   }
   advance();
   std::string buffer = source.substr(start + 1, current - 1);
-  tokens.push_back(Token(TOKEN::String, buffer, line));
+  tokens.push_back(Token(TOKEN::LiteralString, buffer, line));
 }
 void Lexer::skipWhiteSpaces() {
   while (!endReached() && source[current] == ' ') {
@@ -73,6 +114,9 @@ void Lexer::scanTokens() {
   // match for numbers
   if (isNumber(ch)) {
     scanNumber();
+  }
+  if (isAlphanumeric(ch) || isUnderScore(peek())) {
+    scanIdentifier();
   }
   // match all the single tokens
   switch (ch) {
