@@ -1,14 +1,11 @@
-Function main()
+main()
 {
 int a=10;
 int b=15;
-	for 10 till 20 until a<=b 
+	for (int a=10;a<=15;a+=1)
 	{
-		a+=1;
-
+		//do stuff
 	}
-	output(a);
-
 	//this is a single line comment
 	while a>b 
 	{

@@ -23,7 +23,7 @@ Lexer::Lexer(const std::string &source) : source(source) {
   keywordsMap["True"] = TOKEN::True;
   keywordsMap["False"] = TOKEN::False;
 }
-//comment
+// comment
 bool Lexer::endReached() { return current >= source.size(); }
 
 char Lexer::peek() {
