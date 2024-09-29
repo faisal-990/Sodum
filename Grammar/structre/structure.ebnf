@@ -1,0 +1,60 @@
+program = {function_declaration | function_definition | variable_declaration},
+    main_function, {function_declaration | function_definition}, EOF;
+main_function = "main", "(", ")", block;
+function = "function", identifier, "(", [parameter_list], ")", block;
+
+function_declaration = function, ";";  // Use a semicolon for declarations
+
+function_definition = function, block;   // Directly follow with a block for definitions
+
+block = "{", {statement}, "}";
+statement = variable_declaration | assignment | if_statement | while_loop |
+            for_loop | function_call | expression_statement | return_statement |
+            "error";
+variable_declaration = type, identifier, [ "=", expression ], ";";
+assignment = identifier, ("=" | "+=" | "-=" | "*=" | "/=" | "%="), expression,
+    ";";
+if_statement = "if", condition, block, {"else-if", condition, block},
+    [ "else", block ];
+while_loop = "while", condition, block;
+for_loop = "for", "(", [type], identifier, "=", start, ",", identifier,
+    comparison_operator, end, ",", identifier,
+    ("+=" | "-=" | "*=" | "/=" | "%="), number ")", block;
+start = number;
+end = number;
+function_call = identifier, "(", [argument_list], ")";
+argument_list = expression, {",", expression};
+parameter_list = parameter, {",", parameter};
+parameter = type, identifier;
+type = "int" | "boolean" | "string";
+identifier = letter, {letter | digit | "_"};
+literal = integer_literal | boolean_literal | string_literal;
+integer_literal = digit, {digit};
+boolean_literal = "true" | "false";
+string_literal = '"', {any_character - '"' | '\"'}, '"';
+operator= "+" | "-" | "*" | "/" | "%" | "&&" | "||" | "^";
+unary_operator = "!" | "-";
+expression_statement = expression, ";";
+expression = logic_expression;
+logic_expression = xor_expression, {"||", xor_expression};
+xor_expression = and_expression, {"^", and_expression};
+and_expression = comparison_expression, {"&&", comparison_expression};
+comparison_expression = additive_expression,
+    [ comparison_operator, additive_expression ];
+additive_expression = multiplicative_expression,
+    {("+" | "-"), multiplicative_expression};
+multiplicative_expression = unary_expression,
+    {("*" | "/" | "%"), unary_expression};
+unary_expression = {unary_operator}, primary_expression;
+primary_expression = literal | identifier | "(", expression,
+    ")" | function_call;
+condition = expression;
+comparison_operator = "==" | ">=" | "!=" | ">" | "<" | "<=";
+return_statement = "ret", [expression], ";";
+letter = "A" | "B" | ... | "Z" | "a" | "b" | ... | "z";
+number = digit, {digit};
+digit = "0" | "1" | ... | "9";
+any_character = ? any Unicode character ? ;
+whitespace = " " | "\t" | "\n" | "\r";
+comment = "//", {any_character - "\n"}, "//";
+EOF = ? end of file marker ? ;

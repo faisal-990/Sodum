@@ -1,0 +1,108 @@
+//this is the structure of the grammar
+//start from the highest source possible and work your way down
+
+
+//expressions are things that can be evaluated are guaranteed to 
+//produce results
+/*whereas statement may or may not produce a result but are available to control the general flow of the program */
+
+
+//in this bnf files it is common to use recursion to evaluate the expression while the base case has to be present in the statement
+
+<program> ::= {<statements>}+ | <EOF>
+
+<statement> ::=<variable-declaration> | <assignment> | <If-statement> | <While-loop> | <For-loop> | <Function-call> | <Function-declaration> | <Function-definition >	| <expression_statement> | error
+
+
+
+
+
+
+<variable-declaration> ::= <type> <identifier> ["=" <expression>] ";"
+
+<assignment> ::=<identifier> "="<expression> ";"
+
+<If-statement> ::= "if" <condition> <block> {else-if <condition> <block>} ["else" <block>]
+
+<While-loop> ::= "while" <condition> <block>
+<For-loop> ::= "for"  <start> "till" <end> "until" <condition> <block>
+<start>::= <number>
+<end>::=<number>
+
+<Function-definition> ::= "Function" <identifier> "("[ <parameter_list>] ")" "{" <block> "}"
+
+
+<Function-declaration> ::="Function" <identifier> "(" [ <parameter_list>] ")" ";"
+
+<Function-call> ::=<identifier> "("[<argument-list>] ")"
+
+<argument-list> ::=[<expression>] { ","<expression>}*
+
+
+<parameter_list> ::=<parameter> {"," <parameter> }*
+
+<parameter> ::=<type> <identifier>
+
+<block> ::= "{" {<statement>} "}"
+
+<type> :: ="int" | " boolean"
+
+
+<identifier> ::= <letter> | { letter | digit | "_"}*
+
+
+<error> ::= "unexpected tokens" | "syntax error"
+
+<literal> ::= <integer_literal> | <boolean_literal>
+
+<integer_literal> ::= <digit> | digit <integer_literal>
+
+<boolean_literal> ::="true" | "false"
+
+<operator> ::= "+" | "-" |"* " | "/" | "%" 
+
+
+<expression_statement> ::= <expression> ";"
+
+// Expressions evaluate to a value
+<expression> ::= <term>
+               | <expression> "+" <term>
+               | <expression> "-" <term>
+
+<term> ::= <factor>
+         | <term> "*" <factor>
+         | <term> "/" <factor>
+         | <term> "%" <factor>
+
+<factor> ::= <literal>
+           | <identifier>
+           | "(" <expression> ")"
+
+
+
+
+
+<operator_assignment> ::= <identifer> <operator> <number>
+
+<condition> ::=<expression> <comparison_operator> <expression>
+
+<comparison_operator> ::= "==" | ">=" | "!=" | ">" | "<" | "<="
+
+<letter> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" |
+             "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<number>::=<digits>(digits)*
+
+<string> ::=<start_quote> <any_characters> <end_quote>
+<start_quote> ::= "
+<end_quote> ::= "
+
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+
+//is whitespace is used implicitely
+<whitespace> ::=" " 
+<comment> ::="//" {<any_characters}* "//"
+
+//anything except for newline
+<any_characters> ::= . 
+
+<EOF> ::= <<end of file>>
