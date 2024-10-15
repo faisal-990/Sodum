@@ -1,4 +1,4 @@
-** Implement string in the tokens and make necessary changes in the grammar
-** add new line \n to the language otherwise comments cannot be implemented
-** implement the lexer methods
+** structure the ast tree according to the grammar rules
+** write a LL(k) parser and integrate with the ast structure
+** dispaly the tree
 
