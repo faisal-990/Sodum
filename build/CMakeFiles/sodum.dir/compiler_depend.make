@@ -206,7 +206,20 @@ CMakeFiles/sodum.dir/src/lexer.cpp.o: ../src/lexer.cpp \
   /usr/include/c++/11/bits/node_handle.h \
   /usr/include/c++/11/bits/unordered_map.h \
   /usr/include/c++/11/bits/erase_if.h \
-  ../include/tokens.hpp
+  ../include/tokens.hpp \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/c++/11/ctime \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc
 
 CMakeFiles/sodum.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/stdc-predef.h \
@@ -415,6 +428,10 @@ CMakeFiles/sodum.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/bits/erase_if.h \
   ../include/tokens.hpp \
   ../include/parser/parser.hpp \
+  /usr/include/c++/11/map \
+  /usr/include/c++/11/bits/stl_tree.h \
+  /usr/include/c++/11/bits/stl_map.h \
+  /usr/include/c++/11/bits/stl_multimap.h \
   /usr/include/c++/11/sstream \
   /usr/include/c++/11/bits/sstream.tcc
 
@@ -422,11 +439,23 @@ CMakeFiles/sodum.dir/src/parser.cpp.o: ../src/parser.cpp \
   /usr/include/stdc-predef.h
 
 
-/usr/include/c++/11/sstream:
+/usr/include/c++/11/bits/stl_map.h:
 
 ../include/parser/parser.hpp:
 
 ../src/main.cpp:
+
+/usr/include/c++/11/sstream:
+
+/usr/include/c++/11/bits/quoted_string.h:
+
+/usr/include/c++/11/bits/locale_conv.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.h:
 
 /usr/include/c++/11/bits/erase_if.h:
 
@@ -483,6 +512,8 @@ CMakeFiles/sodum.dir/src/parser.cpp.o: ../src/parser.cpp \
 /usr/include/c++/11/typeinfo:
 
 /usr/include/c++/11/exception:
+
+/usr/include/c++/11/bits/unique_ptr.h:
 
 /usr/include/c++/11/ostream:
 
@@ -544,6 +575,8 @@ CMakeFiles/sodum.dir/src/parser.cpp.o: ../src/parser.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
+/usr/include/c++/11/map:
+
 /usr/include/c++/11/bits/range_access.h:
 
 /usr/include/c++/11/bits/exception.h:
@@ -567,6 +600,8 @@ CMakeFiles/sodum.dir/src/parser.cpp.o: ../src/parser.cpp \
 /usr/include/c++/11/system_error:
 
 /usr/include/c++/11/bits/stl_vector.h:
+
+/usr/include/libintl.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
@@ -610,6 +645,8 @@ CMakeFiles/sodum.dir/src/parser.cpp.o: ../src/parser.cpp \
 
 /usr/include/features-time64.h:
 
+/usr/include/c++/11/locale:
+
 /usr/include/linux/errno.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
@@ -630,6 +667,8 @@ CMakeFiles/sodum.dir/src/parser.cpp.o: ../src/parser.cpp \
 
 /usr/include/c++/11/bits/vector.tcc:
 
+/usr/include/c++/11/bits/stl_multimap.h:
+
 /usr/include/features.h:
 
 /usr/include/c++/11/ext/numeric_traits.h:
@@ -649,6 +688,8 @@ CMakeFiles/sodum.dir/src/parser.cpp.o: ../src/parser.cpp \
 /usr/include/c++/11/bits/functexcept.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
+
+/usr/include/c++/11/bits/stl_tree.h:
 
 /usr/include/c++/11/tuple:
 
@@ -754,6 +795,8 @@ CMakeFiles/sodum.dir/src/parser.cpp.o: ../src/parser.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
+/usr/include/c++/11/ctime:
+
 /usr/include/c++/11/bits/codecvt.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
@@ -810,6 +853,8 @@ CMakeFiles/sodum.dir/src/parser.cpp.o: ../src/parser.cpp \
 
 /usr/include/time.h:
 
+/usr/include/c++/11/bits/locale_facets_nonio.tcc:
+
 /usr/include/c++/11/bits/stl_pair.h:
 
 /usr/include/c++/11/ext/atomicity.h:
@@ -823,6 +868,8 @@ CMakeFiles/sodum.dir/src/parser.cpp.o: ../src/parser.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/c++/11/iomanip:
 
 /usr/include/c++/11/ext/new_allocator.h:
 

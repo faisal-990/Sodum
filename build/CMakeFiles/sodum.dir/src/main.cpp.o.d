@@ -169,4 +169,7 @@ CMakeFiles/sodum.dir/src/main.cpp.o: /home/faisal/Sodum/src/main.cpp \
  /usr/include/c++/11/bits/erase_if.h \
  /home/faisal/Sodum/include/../include/tokens.hpp \
  /home/faisal/Sodum/src/../include/parser/parser.hpp \
- /usr/include/c++/11/sstream /usr/include/c++/11/bits/sstream.tcc
+ /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
+ /usr/include/c++/11/bits/stl_map.h \
+ /usr/include/c++/11/bits/stl_multimap.h /usr/include/c++/11/sstream \
+ /usr/include/c++/11/bits/sstream.tcc

@@ -1,2 +1,0 @@
-# Hashes of file build rules.
-55e22fe91e422c85fc144e6c341fdea0 CMakeFiles/format

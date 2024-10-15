@@ -67,7 +67,7 @@ include CMakeFiles/format.dir/compiler_depend.make
 include CMakeFiles/format.dir/progress.make
 
 CMakeFiles/format:
-	cd /home/faisal/Sodum && clang-format -i /home/faisal/Sodum/src/lexer.cpp /home/faisal/Sodum/src/main.cpp /home/faisal/Sodum/src/parser.cpp
+	cd /home/faisal/Sodum && clang-format -i /home/faisal/Sodum/src/lexer.cpp /home/faisal/Sodum/src/main.cpp /home/faisal/Sodum/src/parser.cpp /home/faisal/Sodum/include/tokens.hpp
 
 format: CMakeFiles/format
 format: CMakeFiles/format.dir/build.make

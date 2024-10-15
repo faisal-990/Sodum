@@ -28,6 +28,7 @@ class Lexer{
 	std::vector<Token>lex(const std::string& source);
 	//start will point at the beginning of the lexeme being scanned
 	//current will move
+	void display();
 	private:
 
 
@@ -49,9 +50,9 @@ class Lexer{
 	std::string getString(std::string& source,int start,int current);
 	void skipWhiteSpaces();
 	bool match(char c);
-	void displayError(std::string& buffer);
+	void displayError(const std::string& buffer);
+	bool isUnderScore(char c);	
 	
-
 };
 
 

@@ -16,3 +16,7 @@ Makefile
 .vscode/
 .idea/
 
+include/parser/ast.hpp
+include/parser/parser.hpp
+src/parser.cpp
+

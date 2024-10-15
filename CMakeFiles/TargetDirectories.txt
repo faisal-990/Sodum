@@ -1,4 +1,0 @@
-/home/faisal/Sodum/CMakeFiles/sodum.dir
-/home/faisal/Sodum/CMakeFiles/format.dir
-/home/faisal/Sodum/CMakeFiles/edit_cache.dir
-/home/faisal/Sodum/CMakeFiles/rebuild_cache.dir

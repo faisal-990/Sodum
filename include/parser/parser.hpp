@@ -1,7 +1,7 @@
 #pragma once 
 
-#include "tokens.hpp"
-#include "lexer/lexer.hpp"
+#include "../include/tokens.hpp"
+#include "../include/lexer/lexer.hpp"
 #include <string>
 #include <map>
 #include <vector>
@@ -19,4 +19,5 @@ class Parser{
 		//each non terminal rule in the grammar will correspond to a function starting form the biggest source up
 		//to the individual terminals
 		
+
 	};

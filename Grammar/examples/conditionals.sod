@@ -1,4 +1,4 @@
-main()
+function main()
 {
 	int a;
 	int b;
