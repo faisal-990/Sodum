@@ -59,10 +59,11 @@ void Lexer::scanIdentifier() {
   while (std::isalnum(peek()) || peek() == '_') {
     advance();
   }
-  std::string text =source.substr(start,start-current);
-   TOKEN::TYPE type =
+  std::string text = source.substr(start, current - start);
+  TOKEN::TYPE type =
       keywordsMap.count(text) ? keywordsMap[text] : TOKEN::Identifier;
   tokens.emplace_back(type, text, line);
+  return;
 }
 
 void Lexer::scanNumber() {
@@ -72,12 +73,16 @@ void Lexer::scanNumber() {
 
   tokens.emplace_back(TOKEN::LiteralInt, source.substr(start, current - start),
                       line);
+  return;
 }
 
 void Lexer::scanString() {
   while (peek() != '"' && !endReached()) {
-    if (peek() == '\n')
+    if (peek() == '\n') {
       line++;
+      // i dont want to process new line
+      current++;
+    }
     advance();
   }
 
@@ -89,6 +94,7 @@ void Lexer::scanString() {
   advance(); // Closing quote
   std::string value = source.substr(start + 1, current - start - 2);
   tokens.emplace_back(TOKEN::LiteralString, value, line);
+  return;
 }
 
 void Lexer::scanTokens() {
@@ -182,6 +188,7 @@ void Lexer::scanTokens() {
 }
 
 std::vector<Token> Lexer::lex(const std::string &source) {
+  tokens.clear();
   while (!endReached()) {
     scanTokens();
   }
