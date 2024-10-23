@@ -82,6 +82,7 @@ void Lexer::scanString() {
       line++;
       // i dont want to process new line
       current++;
+      continue;
     }
     advance();
   }

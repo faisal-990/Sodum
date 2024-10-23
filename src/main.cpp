@@ -1,4 +1,5 @@
 #include "../include/lexer/lexer.hpp"
+#include "../include/parser/ast.hpp"
 #include "../include/parser/parser.hpp"
 #include "../include/tokens.hpp"
 #include <fstream>
@@ -23,5 +24,7 @@ int main(int argc, char *argv[])
   Lexer lexer(source);
   std::vector<Token> tokens = lexer.lex(source);
   lexer.display();
+  Parser parser(tokens);
+
   return 0;
 }

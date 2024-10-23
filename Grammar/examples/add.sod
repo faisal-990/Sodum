@@ -1,8 +1,14 @@
- main()
+function hello();
+function main()
 {
-	int a=90;
-	int b=20;
-	int c=a+b;
-	output(c);
-	ret 0;
+	int a= b+x;
+	return;
+	if a >x
+	{
+		output("a is greater than x");
+	}
+	**********hello
+	return ;
+	//or ret
 }
+

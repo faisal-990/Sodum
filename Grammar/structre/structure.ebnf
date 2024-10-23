@@ -11,7 +11,9 @@ block = "{", {statement}, "}";
 statement = variable_declaration | assignment | if_statement | while_loop |
             for_loop | function_call | expression_statement | return_statement |
             "error";
-variable_declaration = type, identifier, [ "=", expression ], ";";
+variable = type, identifer ;
+variable_declaration = variable, ";";
+variable_definition = variable, expression, ";" ;
 assignment = identifier, ("=" | "+=" | "-=" | "*=" | "/=" | "%="), expression,
     ";";
 if_statement = "if", condition, block, {"else-if", condition, block},
@@ -20,8 +22,8 @@ while_loop = "while", condition, block;
 for_loop = "for", "(", [type], identifier, "=", start, ",", identifier,
     comparison_operator, end, ",", identifier,
     ("+=" | "-=" | "*=" | "/=" | "%="), number ")", block;
-start = number;
-end = number;
+start = expression;
+end = expression;
 function_call = identifier, "(", [argument_list], ")";
 argument_list = expression, {",", expression};
 parameter_list = parameter, {",", parameter};
