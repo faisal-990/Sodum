@@ -1,12 +1,15 @@
 #include "../include/lexer/lexer.hpp"
-#include "../include/tokens.hpp"
+
 #include <cctype>
 #include <fstream>
 #include <iomanip>
 #include <string>
 #include <vector>
 
+#include "../include/tokens.hpp"
+
 Lexer::Lexer(const std::string &source)
+
     : source(source), current(0), start(0), line(1) {
   // Initialize the keywordsMap inside the constructor
   keywordsMap["for"] = TOKEN::For;
@@ -35,8 +38,7 @@ char Lexer::peek() { return endReached() ? '\0' : source[current]; }
 char Lexer::advance() { return source[current++]; }
 
 bool Lexer::match(char expected) {
-  if (endReached() || source[current] != expected)
-    return false;
+  if (endReached() || source[current] != expected) return false;
   current++;
   return true;
 }
@@ -92,7 +94,7 @@ void Lexer::scanString() {
     return;
   }
 
-  advance(); // Closing quote
+  advance();  // Closing quote
   std::string value = source.substr(start + 1, current - start - 2);
   tokens.emplace_back(TOKEN::LiteralString, value, line);
   return;
@@ -102,8 +104,7 @@ void Lexer::scanTokens() {
   skipWhiteSpaces();
   start = current;
 
-  if (endReached())
-    return;
+  if (endReached()) return;
 
   char c = advance();
 
@@ -113,82 +114,84 @@ void Lexer::scanTokens() {
     scanNumber();
   } else {
     switch (c) {
-    case '(':
-      tokens.emplace_back(TOKEN::Lpar, "(", line);
-      break;
-    case ')':
-      tokens.emplace_back(TOKEN::Rpar, ")", line);
-      break;
-    case '{':
-      tokens.emplace_back(TOKEN::Lbraces, "{", line);
-      break;
-    case '}':
-      tokens.emplace_back(TOKEN::Rbraces, "}", line);
-      break;
-    case ';':
-      tokens.emplace_back(TOKEN::Semicolon, ";", line);
-      break;
-    case '+':
-      tokens.emplace_back(match('=') ? TOKEN::PlusEqual : TOKEN::Plus,
-                          source.substr(start, current - start), line);
-      break;
-    case '-':
-      tokens.emplace_back(match('=') ? TOKEN::MinusEqual : TOKEN::Minus,
-                          source.substr(start, current - start), line);
-      break;
-    case '*':
-      tokens.emplace_back(match('=') ? TOKEN::MultiplyEqual : TOKEN::Multiply,
-                          source.substr(start, current - start), line);
-      break;
-    case '/':
-      if (match('/')) {
-        // Comment
-        while (peek() != '\n' && !endReached())
-          advance();
-      } else {
-        tokens.emplace_back(match('=') ? TOKEN::DivideEqual : TOKEN::Divide,
+      case '(':
+        tokens.emplace_back(TOKEN::Lpar, "(", line);
+        break;
+      case ')':
+        tokens.emplace_back(TOKEN::Rpar, ")", line);
+        break;
+      case '{':
+        tokens.emplace_back(TOKEN::Lbraces, "{", line);
+        break;
+      case '}':
+        tokens.emplace_back(TOKEN::Rbraces, "}", line);
+        break;
+      case ';':
+        tokens.emplace_back(TOKEN::Semicolon, ";", line);
+        break;
+      case ',':
+        tokens.emplace_back(TOKEN::Comma, ",", line);
+        break;
+      case '+':
+        tokens.emplace_back(match('=') ? TOKEN::PlusEqual : TOKEN::Plus,
                             source.substr(start, current - start), line);
-      }
-      break;
-    case '%':
-      tokens.emplace_back(match('=') ? TOKEN::ModulusEqual : TOKEN::Modulus,
-                          source.substr(start, current - start), line);
-      break;
-    case '>':
-      tokens.emplace_back(match('=') ? TOKEN::GreaterEqual : TOKEN::Greater,
-                          source.substr(start, current - start), line);
-      break;
-    case '<':
-      tokens.emplace_back(match('=') ? TOKEN::LesserEqual : TOKEN::Lesser,
-                          source.substr(start, current - start), line);
-      break;
-    case '!':
-      tokens.emplace_back(match('=') ? TOKEN::NotEqual : TOKEN::Not,
-                          source.substr(start, current - start), line);
-      break;
-    case '=':
-      tokens.emplace_back(match('=') ? TOKEN::EqualEqual : TOKEN::Equal,
-                          source.substr(start, current - start), line);
-      break;
-    case '|':
-      tokens.emplace_back(match('|') ? TOKEN::BitwiseOr : TOKEN::Error,
-                          source.substr(start, current - start), line);
-      break;
-    case '&':
-      tokens.emplace_back(match('&') ? TOKEN::BitwiseAnd : TOKEN::Error,
-                          source.substr(start, current - start), line);
-      break;
-    case '"':
-      scanString();
-      break;
-    default:
-      tokens.emplace_back(TOKEN::Error, std::string(1, c), line);
-      break;
+        break;
+      case '-':
+        tokens.emplace_back(match('=') ? TOKEN::MinusEqual : TOKEN::Minus,
+                            source.substr(start, current - start), line);
+        break;
+      case '*':
+        tokens.emplace_back(match('=') ? TOKEN::MultiplyEqual : TOKEN::Multiply,
+                            source.substr(start, current - start), line);
+        break;
+      case '/':
+        if (match('/')) {
+          // Comment
+          while (peek() != '\n' && !endReached()) advance();
+        } else {
+          tokens.emplace_back(match('=') ? TOKEN::DivideEqual : TOKEN::Divide,
+                              source.substr(start, current - start), line);
+        }
+        break;
+      case '%':
+        tokens.emplace_back(match('=') ? TOKEN::ModulusEqual : TOKEN::Modulus,
+                            source.substr(start, current - start), line);
+        break;
+      case '>':
+        tokens.emplace_back(match('=') ? TOKEN::GreaterEqual : TOKEN::Greater,
+                            source.substr(start, current - start), line);
+        break;
+      case '<':
+        tokens.emplace_back(match('=') ? TOKEN::LesserEqual : TOKEN::Lesser,
+                            source.substr(start, current - start), line);
+        break;
+      case '!':
+        tokens.emplace_back(match('=') ? TOKEN::NotEqual : TOKEN::Not,
+                            source.substr(start, current - start), line);
+        break;
+      case '=':
+        tokens.emplace_back(match('=') ? TOKEN::EqualEqual : TOKEN::Equal,
+                            source.substr(start, current - start), line);
+        break;
+      case '|':
+        tokens.emplace_back(match('|') ? TOKEN::BitwiseOr : TOKEN::Error,
+                            source.substr(start, current - start), line);
+        break;
+      case '&':
+        tokens.emplace_back(match('&') ? TOKEN::BitwiseAnd : TOKEN::Error,
+                            source.substr(start, current - start), line);
+        break;
+      case '"':
+        scanString();
+        break;
+      default:
+        tokens.emplace_back(TOKEN::Error, std::string(1, c), line);
+        break;
     }
   }
 }
 
-std::vector<Token> Lexer::lex(const std::string &source) {
+std::vector<Token> Lexer::lex(const std ::string &source) {
   tokens.clear();
   while (!endReached()) {
     scanTokens();

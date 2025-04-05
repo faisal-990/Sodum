@@ -1,4 +1,8 @@
-** structure the ast tree according to the grammar rules
-** write a LL(k) parser and integrate with the ast structure
-** dispaly the tree
-
+** fix the parser 
+** write print() to display the nodes as a tree
+** semantic analysis( just the basic)
+** llvm ir generation
+** asm conversion
+** loader implement
+** linker implement
+** YAYY YOU DID IT!!!

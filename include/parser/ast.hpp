@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "../include/tokens.hpp"
+#include "../tokens.hpp"
 
 // Base node class
 class AstNode {
@@ -72,8 +72,14 @@ class FunctionDefinitionNode : public FunctionNode {
       std::unique_ptr<BlockNode> block)
       : FunctionNode(funcName, parameters), block(std::move(block)) {}
 };
+// ExpressionNode predefinition as it is used in FunctionCallNode
 
-class FunctionCallNode : public AstNode {
+class ExpressionNode : public AstNode {
+ public:
+  virtual ~ExpressionNode() = default;
+};
+
+class FunctionCallNode : public ExpressionNode {
   std::string funcName;
   std::vector<std::unique_ptr<AstNode>> arguments;
 
@@ -84,7 +90,7 @@ class FunctionCallNode : public AstNode {
 };
 
 // Variable-related nodes
-class VariableNode : public AstNode {
+class VariableNode : public ExpressionNode {
  protected:
   std::string identifier;
   std::string type;
@@ -92,6 +98,7 @@ class VariableNode : public AstNode {
  public:
   VariableNode(const std::string& identifier, const std::string& type)
       : identifier(identifier), type(type) {}
+  const std::string getName() { return identifier; }
 };
 
 class VariableDeclarationNode : public VariableNode {
@@ -111,10 +118,6 @@ class VariableDefinitionNode : public VariableNode {
 };
 
 // Expression nodes
-class ExpressionNode : public AstNode {
- public:
-  virtual ~ExpressionNode() = default;
-};
 
 enum class AssignmentOperator {
   ASSIGN,    // =
@@ -131,12 +134,23 @@ class AssignmentNode : public AstNode {
   std::unique_ptr<ExpressionNode> expression;
 
  public:
+  const std::string getName() const { return identifier; }
   AssignmentNode(const std::string& identifier, AssignmentOperator op,
                  std::unique_ptr<ExpressionNode> expression)
       : identifier(identifier), op(op), expression(std::move(expression)) {}
 };
 
 // Control flow nodes
+
+class WhileNode : public AstNode {
+  std::unique_ptr<ExpressionNode> condition;
+  std::unique_ptr<BlockNode> block;
+
+ public:
+  WhileNode(std::unique_ptr<ExpressionNode> condition,
+            std::unique_ptr<BlockNode> block)
+      : condition(std::move(condition)), block(std::move(block)) {}
+};
 class IfNode : public AstNode {
   std::unique_ptr<ExpressionNode> condition;
   std::unique_ptr<BlockNode> thenBlock;
@@ -150,22 +164,12 @@ class IfNode : public AstNode {
          std::unique_ptr<BlockNode> thenBlock,
          std::vector<std::pair<std::unique_ptr<ExpressionNode>,
                                std::unique_ptr<BlockNode>>>
-             elseIfBlocks,
+             elseIfBlocks = {},
          std::unique_ptr<BlockNode> elseBlock = nullptr)
       : condition(std::move(condition)),
         thenBlock(std::move(thenBlock)),
         elseIfBlocks(std::move(elseIfBlocks)),
         elseBlock(std::move(elseBlock)) {}
-};
-
-class WhileNode : public AstNode {
-  std::unique_ptr<ExpressionNode> condition;
-  std::unique_ptr<BlockNode> block;
-
- public:
-  WhileNode(std::unique_ptr<ExpressionNode> condition,
-            std::unique_ptr<BlockNode> block)
-      : condition(std::move(condition)), block(std::move(block)) {}
 };
 
 class ForNode : public AstNode {
