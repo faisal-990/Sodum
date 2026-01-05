@@ -1,6 +1,7 @@
 # Ignore build directories
 build/
-
+TODOS.md 
+TODOS
 
 # Ignore generated files
 CMakeFiles/
