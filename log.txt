@@ -1,0 +1,2 @@
+[  0%] Built target format
+[ 25%] Building CXX object CMakeFiles/sodum.dir/src/parser.cpp.o

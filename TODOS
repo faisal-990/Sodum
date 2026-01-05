@@ -1,7 +1,0 @@
-** fix the parser 
-** write print() to display the nodes as a tree
-** semantic analysis( just the basic)
-** llvm ir generation
-** asm conversion
-** loader implement
-** linker implement

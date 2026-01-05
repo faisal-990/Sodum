@@ -6,11 +6,13 @@
 #include <vector>
 
 #include "../../include/tokens.hpp"
+
 //**NOTE FOR ME ::
 // while creating an object of the class new keyword will not be used
 // reason::new keyword allocates data on the heap which and provides a pointer
 // //to that loaction which will have to be managed creating objects without new
-// will allocate memeory in the stack which will be auto managed
+// will allocate memeory in the stack which will be freed while deallocating
+// stack(careful of leaks here)
 
 class Lexer {
   // it should take in the source file
@@ -18,7 +20,7 @@ class Lexer {
   // it should provide a std::vector of tokens
   std::vector<Token> tokens;
 
- public:
+public:
   // constructor that assigns the incoming file from main.cpp
   Lexer(const std::string &source);
   std::unordered_map<std::string, TOKEN::TYPE> keywordsMap;
@@ -28,7 +30,7 @@ class Lexer {
   // current will move
   void display();
 
- private:
+private:
   int start = 0;
   int current = 0;
   int line = 1;

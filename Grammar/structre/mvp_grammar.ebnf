@@ -1,0 +1,12 @@
+program     → block
+block       → "{" statement* "}"
+statement   → var_decl
+            | assignment
+            | expr_stmt
+var_decl    → type identifier ("=" expression)? ";"
+assignment  → identifier "=" expression ";"
+expr_stmt   → expression ";"
+expression  → term (("+"|"-") term)*
+term        → factor (("*"|"/") factor)*
+factor      → number | identifier | "(" expression ")"
+

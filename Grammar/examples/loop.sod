@@ -1,7 +1,0 @@
-main()
-{
-	int a=1;
-	int b=122;
-	output("the answer is:"a*b);
-	return ;
-}

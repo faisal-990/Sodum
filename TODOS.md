@@ -1,0 +1,5 @@
+- [ ]- write a simple expression and verify its working in all stages and pretty print it on terminal
+    - [X] Read the file
+    - [X] convert the file into tokens
+    - [X] parse the file and build the ast tree
+    - [ ] display the ast tree on terminal
