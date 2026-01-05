@@ -9,6 +9,8 @@ file(GLOB SOURCES
     "src/main.cpp"
     "src/lexer.cpp"
     "src/parser_v1.0.cpp"
+    "src/visitors/ast_accept.cpp"
+    "src/visitors/ast_printer.cpp"
 )
 
 # Add header files
@@ -17,6 +19,8 @@ file(GLOB HEADERS
     "include/lexer/lexer.hpp"
     "include/parser/parser_v1.hpp"
     "include/parser/ast_v1.1.hpp"
+    "include/visitor/ast_visitor.hpp"
+    "include/visitor/visitor.hpp"
 )
 
 # Include directories

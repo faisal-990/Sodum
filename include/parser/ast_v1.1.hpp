@@ -28,9 +28,16 @@ AST
 // Base AST Node
 // =====================================================
 
+class Visitor;
+
 class AstNode {
  public:
   virtual ~AstNode() = default;
+
+  // accept takes in the visitor interface(so any concrete impelementation can
+  // be passed here) and runs the relevant visit implementation function through
+  // dynamic dispath(polymorphism baby)
+  virtual void accept(Visitor& visitor) = 0;
 };
 
 // =====================================================
@@ -41,6 +48,9 @@ class StatementNode : public AstNode {};
 
 class ExpressionNode : public AstNode {
  public:
+  // this is just a wrapper class ,and no accept is required
+  // accept is only present in concrete classes (expect for root(ast node
+  // class))
   virtual ~ExpressionNode() = default;
 };
 
@@ -58,6 +68,15 @@ class ProgramNode : public AstNode {
       : m_body(std::move(body))
   {
   }
+
+  // getter functions to avoid exposing privates
+
+  BlockNode* body() const
+  {
+    return m_body.get();
+  }
+
+  void accept(Visitor& visitor) override;
 };
 
 // A statement may contain an expression but an expression is never a staetement
@@ -69,6 +88,14 @@ class BlockNode : public AstNode {
       : m_statements(std::move(statements))
   {
   }
+
+  // getter functions to avoid exposing privates
+  const std::vector<std::unique_ptr<StatementNode>>& statements() const
+  {
+    return m_statements;
+  }
+
+  void accept(Visitor& visitor) override;
 };
 
 // =====================================================
@@ -84,6 +111,16 @@ class ExpressionStatementNode : public StatementNode {
       : m_expr(std::move(expr))
   {
   }
+
+  // getter functions to avoid exposing privates
+
+  ExpressionNode* expr() const
+  {
+    return m_expr.get();
+  }
+
+  // visitor accepter method
+  void accept(Visitor& visitor) override;
 };
 
 // Variable declaration: int x;  or  int x = expr;
@@ -101,6 +138,25 @@ class VariableDeclarationNode : public StatementNode {
         m_initializer(std::move(initializer))
   {
   }
+
+  // helper getter methods to hide private memebers
+  const std::string& name() const
+  {
+    return m_name;
+  }
+
+  const std::string& type() const
+  {
+    return m_type;
+  }
+
+  ExpressionNode* initializer() const
+  {
+    return m_initializer.get();
+  }
+
+  // visitor patterns's acceptors
+  void accept(Visitor& visitor) override;
 };
 
 // Variable assignment: x = expr;
@@ -114,6 +170,18 @@ class VariableAssignmentNode : public StatementNode {
       : m_name(std::move(name)), m_value(std::move(value))
   {
   }
+
+  const std::string& name() const
+  {
+    return m_name;
+  }
+
+  ExpressionNode* value() const
+  {
+    return m_value.get();
+  }
+
+  void accept(Visitor& visitor) override;
 };
 
 // =====================================================
@@ -133,6 +201,23 @@ class BinaryExprNode : public ExpressionNode {
       : m_op(op), m_lhs(std::move(lhs)), m_rhs(std::move(rhs))
   {
   }
+
+  BinaryOperator op() const
+  {
+    return m_op;
+  }
+
+  ExpressionNode* lhs() const
+  {
+    return m_lhs.get();
+  }
+
+  ExpressionNode* rhs() const
+  {
+    return m_rhs.get();
+  }
+
+  void accept(Visitor& visitor) override;
 };
 
 // Identifier expression: x
@@ -141,6 +226,13 @@ class IdentifierExprNode : public ExpressionNode {
 
  public:
   explicit IdentifierExprNode(std::string name) : m_name(std::move(name)) {}
+
+  const std::string& name() const
+  {
+    return m_name;
+  }
+
+  void accept(Visitor& visitor) override;
 };
 
 // =====================================================
@@ -150,6 +242,9 @@ class IdentifierExprNode : public ExpressionNode {
 class LiteralNode : public ExpressionNode {
  public:
   virtual ~LiteralNode() = default;
+  // this is just a wrapper class ,and no accept is required
+  // accept is only present in concrete classes (expect for root(ast node
+  // class))
 };
 
 class NumericLiteralNode : public LiteralNode {
@@ -157,6 +252,13 @@ class NumericLiteralNode : public LiteralNode {
 
  public:
   explicit NumericLiteralNode(int value) : m_value(value) {}
+
+  int value() const
+  {
+    return m_value;
+  }
+
+  void accept(Visitor& visitor) override;
 };
 
 class StringLiteralNode : public LiteralNode {
@@ -164,6 +266,13 @@ class StringLiteralNode : public LiteralNode {
 
  public:
   explicit StringLiteralNode(std::string value) : m_value(std::move(value)) {}
+
+  const std::string& value() const
+  {
+    return m_value;
+  }
+
+  void accept(Visitor& visitor) override;
 };
 
 class BooleanLiteralNode : public LiteralNode {
@@ -171,4 +280,11 @@ class BooleanLiteralNode : public LiteralNode {
 
  public:
   explicit BooleanLiteralNode(bool value) : m_value(value) {}
+
+  bool value() const
+  {
+    return m_value;
+  }
+
+  void accept(Visitor& visitor) override;
 };

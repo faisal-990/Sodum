@@ -214,6 +214,54 @@ src/parser_v1.0.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sodum.dir/build.make CMakeFiles/sodum.dir/src/parser_v1.0.cpp.s
 .PHONY : src/parser_v1.0.cpp.s
 
+src/visitors/ast_accept.o: src/visitors/ast_accept.cpp.o
+.PHONY : src/visitors/ast_accept.o
+
+# target to build an object file
+src/visitors/ast_accept.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sodum.dir/build.make CMakeFiles/sodum.dir/src/visitors/ast_accept.cpp.o
+.PHONY : src/visitors/ast_accept.cpp.o
+
+src/visitors/ast_accept.i: src/visitors/ast_accept.cpp.i
+.PHONY : src/visitors/ast_accept.i
+
+# target to preprocess a source file
+src/visitors/ast_accept.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sodum.dir/build.make CMakeFiles/sodum.dir/src/visitors/ast_accept.cpp.i
+.PHONY : src/visitors/ast_accept.cpp.i
+
+src/visitors/ast_accept.s: src/visitors/ast_accept.cpp.s
+.PHONY : src/visitors/ast_accept.s
+
+# target to generate assembly for a file
+src/visitors/ast_accept.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sodum.dir/build.make CMakeFiles/sodum.dir/src/visitors/ast_accept.cpp.s
+.PHONY : src/visitors/ast_accept.cpp.s
+
+src/visitors/ast_printer.o: src/visitors/ast_printer.cpp.o
+.PHONY : src/visitors/ast_printer.o
+
+# target to build an object file
+src/visitors/ast_printer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sodum.dir/build.make CMakeFiles/sodum.dir/src/visitors/ast_printer.cpp.o
+.PHONY : src/visitors/ast_printer.cpp.o
+
+src/visitors/ast_printer.i: src/visitors/ast_printer.cpp.i
+.PHONY : src/visitors/ast_printer.i
+
+# target to preprocess a source file
+src/visitors/ast_printer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sodum.dir/build.make CMakeFiles/sodum.dir/src/visitors/ast_printer.cpp.i
+.PHONY : src/visitors/ast_printer.cpp.i
+
+src/visitors/ast_printer.s: src/visitors/ast_printer.cpp.s
+.PHONY : src/visitors/ast_printer.s
+
+# target to generate assembly for a file
+src/visitors/ast_printer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sodum.dir/build.make CMakeFiles/sodum.dir/src/visitors/ast_printer.cpp.s
+.PHONY : src/visitors/ast_printer.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -233,6 +281,12 @@ help:
 	@echo "... src/parser_v1.0.o"
 	@echo "... src/parser_v1.0.i"
 	@echo "... src/parser_v1.0.s"
+	@echo "... src/visitors/ast_accept.o"
+	@echo "... src/visitors/ast_accept.i"
+	@echo "... src/visitors/ast_accept.s"
+	@echo "... src/visitors/ast_printer.o"
+	@echo "... src/visitors/ast_printer.i"
+	@echo "... src/visitors/ast_printer.s"
 .PHONY : help
 
 

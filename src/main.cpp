@@ -6,6 +6,7 @@
 #include "../include/lexer/lexer.hpp"
 #include "../include/parser/parser_v1.hpp"
 #include "../include/tokens.hpp"
+#include "../include/visitor/ast_visitor.hpp"
 
 int main(int argc, char* argv[])
 
@@ -35,7 +36,9 @@ int main(int argc, char* argv[])
 
   Parser parser(tokens);
 
-  parser.parseProgram();
-  parser.display();
+  auto ast = parser.parseProgram();
+  AstPrinter printer(std::cout);
+  ast->accept(printer);
+
   return 0;
 }

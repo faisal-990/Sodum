@@ -67,7 +67,7 @@ include CMakeFiles/format.dir/compiler_depend.make
 include CMakeFiles/format.dir/progress.make
 
 CMakeFiles/format:
-	cd /home/faisal/Sodum && clang-format --style=LLVM -i /home/faisal/Sodum/src/lexer.cpp /home/faisal/Sodum/src/main.cpp /home/faisal/Sodum/src/parser_v1.0.cpp /home/faisal/Sodum/include/lexer/lexer.hpp /home/faisal/Sodum/include/parser/ast_v1.1.hpp /home/faisal/Sodum/include/parser/parser_v1.hpp /home/faisal/Sodum/include/tokens.hpp
+	cd /home/faisal/Sodum && clang-format --style=LLVM -i /home/faisal/Sodum/src/lexer.cpp /home/faisal/Sodum/src/main.cpp /home/faisal/Sodum/src/parser_v1.0.cpp /home/faisal/Sodum/src/visitors/ast_accept.cpp /home/faisal/Sodum/src/visitors/ast_printer.cpp /home/faisal/Sodum/include/lexer/lexer.hpp /home/faisal/Sodum/include/parser/ast_v1.1.hpp /home/faisal/Sodum/include/parser/parser_v1.hpp /home/faisal/Sodum/include/tokens.hpp /home/faisal/Sodum/include/visitor/ast_visitor.hpp /home/faisal/Sodum/include/visitor/visitor.hpp
 
 format: CMakeFiles/format
 format: CMakeFiles/format.dir/build.make

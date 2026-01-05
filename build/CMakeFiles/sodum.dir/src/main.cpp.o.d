@@ -185,4 +185,6 @@ CMakeFiles/sodum.dir/src/main.cpp.o: /home/faisal/Sodum/src/main.cpp \
  /usr/include/c++/13/backward/auto_ptr.h \
  /usr/include/c++/13/pstl/glue_memory_defs.h \
  /usr/include/c++/13/pstl/execution_defs.h \
- /home/faisal/Sodum/src/../include/parser/../parser/ast_v1.1.hpp
+ /home/faisal/Sodum/src/../include/parser/../parser/ast_v1.1.hpp \
+ /home/faisal/Sodum/src/../include/visitor/ast_visitor.hpp \
+ /home/faisal/Sodum/src/../include/visitor/visitor.hpp

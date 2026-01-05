@@ -1,1 +1,1 @@
-/usr/bin/c++ -g -O0 -g CMakeFiles/sodum.dir/src/lexer.cpp.o CMakeFiles/sodum.dir/src/main.cpp.o CMakeFiles/sodum.dir/src/parser_v1.0.cpp.o -o sodum 
+/usr/bin/c++ -g -O0 -g CMakeFiles/sodum.dir/src/lexer.cpp.o CMakeFiles/sodum.dir/src/main.cpp.o CMakeFiles/sodum.dir/src/parser_v1.0.cpp.o CMakeFiles/sodum.dir/src/visitors/ast_accept.cpp.o CMakeFiles/sodum.dir/src/visitors/ast_printer.cpp.o -o sodum 
