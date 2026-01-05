@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -O0 -g CMakeFiles/sodum.dir/src/lexer.cpp.o CMakeFiles/sodum.dir/src/main.cpp.o CMakeFiles/sodum.dir/src/parser_v1.0.cpp.o -o sodum 
