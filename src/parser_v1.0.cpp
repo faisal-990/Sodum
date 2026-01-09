@@ -37,6 +37,7 @@ bool Parser::match(TOKEN::TYPE expected) const
 
 void Parser::Error(const std::string& message)
 {
+  m_hasError = true;
   int line = -1;
 
   if (m_current < m_tokens.size())
@@ -102,21 +103,26 @@ std::unique_ptr<ExpressionNode> Parser::parseFactor()
 {
   std::cout << "INSIDE THE parseFactor block\n";
 
+  // Handle Numbers
   if (match(TOKEN::TYPE::LiteralInt)) {
     Token tok = consumeTok();
     return std::make_unique<NumericLiteralNode>(std::stoi(tok.lexeme));
   }
 
+  // Handle Variable Names (Identifiers)
+  if (match(TOKEN::TYPE::Identifier)) {
+    Token tok = consumeTok();
+    return std::make_unique<IdentifierExprNode>(tok.lexeme);
+  }
+
+  //  Handle Parentheses
   if (match(TOKEN::TYPE::Lpar)) {
     consumeTok();  // consume '('
-
     auto expr = parseExpression();
-
     if (!match(TOKEN::TYPE::Rpar)) {
       Error("expected ')'");
       return nullptr;
     }
-
     consumeTok();  // consume ')'
     return expr;
   }

@@ -44,7 +44,14 @@ class Parser {
   std::unique_ptr<ProgramNode> parseProgram();
   void display();
 
+  bool hasError()
+  {
+    return m_hasError;
+  }
+
  private:
+  // passing error info to next pipeline stages
+
   // ---------- statements ----------
   std::unique_ptr<BlockNode> parseBlock();          // "{" statement* "}"
   std::unique_ptr<StatementNode> parseStatement();  // decides statement type
@@ -70,4 +77,5 @@ class Parser {
  private:
   std::vector<Token> m_tokens;
   size_t m_current;
+  bool m_hasError = false;
 };

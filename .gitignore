@@ -3,6 +3,13 @@ build/
 TODOS.md 
 TODOS
 
+
+build/
+sodum_out
+output.ll
+*.o 
+
+
 # Ignore generated files
 CMakeFiles/
 CMakeCache.txt
