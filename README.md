@@ -1,135 +1,74 @@
 # Sodum
 
-Sodum is a from-scratch language implementation project built to understand what happens under the hood when code is parsed, analyzed, and executed.
+Sodum is a from-scratch systems language implementation project built to understand the journey of code from raw text to native machine execution.
 
-The project focuses on **compiler front-end design**, **AST construction**, and **static analysis foundations**, with future plans for LLVM-based code generation.
+The project has evolved from a pure front-end experiment into a **vertically integrated compiler toolchain** using LLVM as a backend.
 
 ---
 
 ## Current Status
 
-Sodum is currently in an **MVP front-end stage**, implementing a lexer, recursive-descent parser, structured AST, and visitor-based analysis framework.
+Sodum has reached its **LLVM MVP Stage**. It can now lex, parse, and compile multiple statements—including variable declarations, assignments, and complex arithmetic—into native executable binaries.
 
 ---
 
 ## ✅ Completed
 
-### Language Front-End
-- Handwritten lexer with line-aware tokens
-- Recursive descent parser
-- Correct operator precedence and associativity
-- Parenthesized expressions
-- Block-based scoping (`{ ... }`)
+### Language Infrastructure
+- **Handwritten Lexer:** Line-aware tokenization with support for keywords, literals, and operators.
+- **Recursive Descent Parser:** Handles operator precedence (BODMAS), block scoping, and statement sequencing.
+- **Structural AST:** A clean, semantic representation of the program logic, decoupled from concrete syntax.
 
-### AST Design
-- Structural AST (semantic, not a parse tree)
-- Clear separation between:
-  - Program
-  - Block
-  - Statements
-  - Expressions
-- Parentheses eliminated at AST level
-- Encapsulation via private members and const getters
+### LLVM Backend & CodeGen
+- **AST to LLVM IR Lowering:** Implemented via the Visitor Pattern.
+- **Memory Management:** Stack-based variable allocation using `alloca`, `load`, and `store` instructions.
+- **Expression Support:** Full support for integer math (+, -, *, /) and nested parenthesized expressions.
+- **Symbol Table:** Integrated symbol tracking to bridge AST identifiers with LLVM memory addresses.
 
-### Visitor Infrastructure
-- Visitor pattern implemented from scratch
-- AST nodes expose only `accept(Visitor&)`
-- Visitors are fully decoupled from AST structure
-- Enables multiple independent analysis passes
-
-### Tooling
-- AST Printer visitor
-- Tree-structured output for verification
-- Confirms correct parsing and operator precedence
+### Compiler Driver (The Toolchain)
+- **Automated Pipeline:** A single command orchestrates the entire flow: `Sodum Source -> LLVM IR -> Clang -> Native Binary`.
+- **System Agnostic:** Automatically detects available system compilers (`clang`, `gcc`, or `cc`).
+- **Safety Gatekeeper:** Prevents code generation if the parser detects syntax errors.
 
 ---
 
-## 🚧 In Progress
+## 🚧 In Progress 
 
 ### Language Features
-- `if` statements
-- `while` loops
-- Boolean expressions and conditions
-- Extended expression support
-
-### Static Analysis Foundations
-- Symbol tracking
-- Scope-aware traversal
-- Rule-based AST visitors
+- **Boolean Logic:** Comparison operators (`==`, `>`, `<`, etc.) and Boolean literals.
+- **Print statements** Have a function to print to the terminal to show the state.
+- **Control Flow:** `if` statements and `while` loops using LLVM Basic Blocks and Branching.
+- **Function Support:** Moving beyond a single `@main` block to user-defined functions.
 
 ---
 
 ## 🔮 Planned
 
 ### Static Analysis
-- Uninitialized variable detection
-- Unused variable detection
-- Simple data-flow analysis
-- Control Flow Graph (CFG) construction
-- Rule-based checks inspired by static analysis tools
+- Uninitialized/Unused variable detection via AST traversal.
+- Scope-aware validation.
+- Control Flow Graph (CFG) construction.
 
-### LLVM Integration
-- AST → LLVM IR lowering
-- Expression code generation
-- Variable allocation and scoping
-- SSA via LLVM
-
-### Code Generation
-- Native binary generation
-- Optional JIT execution
-- Optimization passes via LLVM
+### Optimization
+- Leveraging LLVM's optimization passes (-O2, -O3).
+- SSA (Static Single Assignment) form refinements.
 
 ---
 
-## Design Decisions
+## How to Run
 
-### Handwritten Parser
-- Chosen to fully understand grammar-to-AST mapping
-- Enables explicit error handling and recovery
-- Mirrors early-stage compiler design
+1. **Build the compiler:**
+   ```bash
+   mkdir build && cd build
+   cmake ..
+   make
 
-### Structural AST
-- AST represents meaning, not syntax
-- Simplifies analysis and transformations
-- Suitable for multiple backends and tools
 
-### Visitor Pattern
-- Keeps AST stable and extensible
-- Allows independent tools (printers, analyzers, transforms)
-- Aligns with real-world static analysis architectures
+2. **Compile a sodum script:**
+    ```bash
+    ./sodum examples/test.sod
 
-### Encapsulation First
-- AST internals are private
-- Visitors operate through well-defined interfaces
-- Prevents accidental mutation during analysis
-
----
-
-## Limitations
-
-- No type checking yet
-- No symbol table yet
-- Error recovery is minimal
-- Not optimized or production-ready
-
-These are intentional trade-offs for correctness and clarity at this stage.
-
----
-
-## File Format
-
-Source files use the `.sod` extension.
-
----
-
-## Vision
-
-Sodum is designed as a learning-oriented compiler framework where the same AST can power:
-
-- Interpreters
-- Compilers
-- Static analyzers
-- Security rule engines
-
-The long-term goal is to explore how real-world analysis tools reason about code at scale.
-
+3. **Execute the Result:**
+    ```bash
+    ./sodum
+    echo $? #Currently check the result via exit code 
